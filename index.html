@@ -20,6 +20,78 @@
 		width: 100%;
 	}
 	</style>
+	<script>
+	//var operand_array = ["" , ""];
+	//var number_index = 0;
+	//operand_array[number_index] += digit;
+
+
+	//function input_digit(digit){
+	//	var result =  $('#result').val();
+	//	var product = result + digit;
+	//	$('#result').val(product);
+
+
+	//}
+
+		$(document).ready(function() {$("#add_button").click(function(){
+	    var number0_val = $("#number_0").val();
+	    var number1_val = $("#number_1").val();
+	    add_numbers(number0_val, number1_val);
+	});
+	});
+		$(document).ready(function() {$("#sub_button").click(function(){
+	    var number0_val = $("#number_0").val();
+	    var number1_val = $("#number_1").val();
+	    sub_numbers(number0_val, number1_val);
+	});
+	});
+
+		$(document).ready(function() {$("#mul_button").click(function(){
+	    var number0_val = $("#number_0").val();
+	    var number1_val = $("#number_1").val();
+	    mul_numbers(number0_val, number1_val);
+	});
+	});
+
+		$(document).ready(function() {$("#div_button").click(function(){
+	    var number0_val = $("#number_0").val();
+	    var number1_val = $("#number_1").val();
+	    div_numbers(number0_val, number1_val);
+	});
+	});
+
+
+	function add_numbers(x, y){
+	    console.log('add numbers called');
+	    var result = Number(x) + Number(y);
+	    $(document).ready(function() {$("#result").val(result);
+	    });
+	}
+
+	function sub_numbers(operand1, operand2){
+	    console.log('sub numbers called');
+	    var result = parseInt(operand1) - parseInt(operand2);
+	    $(document).ready(function() {$("#result").val(result);
+	});
+	}
+	function mul_numbers(operand1, operand2){
+	    console.log('multiply numbers called');
+	    var result = Number(operand1) * Number(operand2);
+	    $(document).ready(function() {$("#result").val(result);
+	});
+	}
+
+	function div_numbers(operand1, operand2){
+	    console.log('div numbers called');
+	    var result = parseInt(operand1) / parseInt(operand2);
+	    $(document).ready(function() {$("#result").val(result);
+	});
+	}
+	
+
+	</script>
+
 </head>
 <body>
 <div class="container">
@@ -30,16 +102,13 @@
 		<div class="col-xs-1 col-md-offset-3 text-center"><button type="button" onclick="input_digit(7)">7</button></div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(8)">8</button></div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(9)">9</button></div>
-		<div class="col-xs-1 text-center"><button type="button">Del</button></div>
-	</div>
-	<div class="row">
-		<!--<div class="col-xs-1 col-xs-offset-6"><button type="button">+</button></div>-->
+		<div class="col-xs-1 text-center"><button id="del_button" type="button">Del</button></div>
 	</div>
 	<div class="row">
 		<div class="col-xs-1 col-md-offset-3 text-center"><button type="button" onclick="input_digit(4)">4</div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(5)">5</button></div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(6)">6</button></div>
-		<div class="col-xs-1 text-center"><button type="button">&divide;</button></div>
+		<div class="col-xs-1 text-center"><button id="div_button" type="button">&divide;</button></div>
 	</div>
 	<div class="row">
 		<div class="col-xs-12"></div>
@@ -48,17 +117,18 @@
 		<div class="col-xs-1 col-md-offset-3 text-center"><button type="button" onclick="input_digit(3)">3</button></div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(2)">2</button></div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(1)">1</button></div>
-		<div class="col-xs-1 text-center"><button type="button">x</button></div>
+		<div class="col-xs-1 text-center"><button id="mul_button" type="button">x</button></div>
 	</div>
 	<div class="row">
 		<div class="col-xs-1 col-md-offset-3 text-center"><button type="button">.</button></div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(0)">0</button></div>
-		<div class="col-xs-1 text-center"><button type="button">=</button></div>
-		<div class="col-xs-1 text-center"><button type="button">-</button></div>
-		<div class="col-xs-1 text-center"><button type="button">+</button></div>
+		<div class="col-xs-1 text-center"><button id="equal_button" type="button">=</button></div>
+		<div class="col-xs-1 text-center"><button id="sub_button" type="button">-</button></div>
+		<div class="col-xs-1 text-center"><button id="add_button" type="button">+</button></div>
 	</div>
 	<div class="row">
-		<div class="">
+		<div class="col-md-3 col-md-offset-2 text-center"><input id="number_0" placeholer="number 0" type="text"></div>
+		<div class="col-md-3 text-center text-center"><input id="number_1" placeholer="number 1" type="text"></div>
 	</div>
 </div>
 
