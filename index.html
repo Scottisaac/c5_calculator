@@ -21,20 +21,69 @@
 	}
 	</style>
 	<script>
-	//var operand_array = ["" , ""];
-	//var number_index = 0;
-	//operand_array[number_index] += digit;
+	var operand_array = ["" , ""];
+	var active_operator;
+	var index_pointer = 0;
+	var new_value;
+		
 
 
-	//function input_digit(digit){
-	//	var result =  $('#result').val();
-	//	var product = result + digit;
-	//	$('#result').val(product);
 
+		function input_digit(digit){
+			var new_value = $('#result').val();
+			var product = new_value + digit;
+			$('#result').val(product);
+			operand_array[index_pointer]+=digit;
+		}
 
-	//}
+		function input_operator(operator){
+			active_operator = operator;
+			console.log('operator entered was ' , operator);
+			new_value = $('#result').val();
+			var new_op = new_value + operator;
+			console.log('new op is ' , new_op);
+			$('#result').val(new_op);
+			operand_array[index_pointer] += operator;
+			index_pointer = 1;
+			
+		}
+	
+		function calculate(){
+			var num1 = operand_array[0];
+			var num2 = operand_array[1];
+			console.log('new value is ' , new_value);
+			console.log("calculate fucntion ran on click");
+			console.log("at calculate operand array is " , operand_array);
+			console.log('operator is ' , active_operator);
+			switch(active_operator){
+				case '+':
+					$('#result').val();
+					console.log('case + called');
+					var result = add_numbers[num1, num2];
+					$('#result').val(result);
+					break;
 
-		$(document).ready(function() {$("#add_button").click(function(){
+				case '-':
+					$('#result').val();
+					console.log('case - called');
+					var result = sub_numbers[num1, num2];
+					$('#result').val(result);
+					break;
+
+				case '*':
+					var result = mul_numbers[num1, num2];
+					break;
+
+				case '/':
+					var result = div_numbers[num1, num2];
+					break;
+			}
+			
+
+		}
+		
+
+		/*$(document).ready(function() {$("#add_button").click(function(){
 	    var number0_val = $("#number_0").val();
 	    var number1_val = $("#number_1").val();
 	    add_numbers(number0_val, number1_val);
@@ -59,19 +108,19 @@
 	    var number1_val = $("#number_1").val();
 	    div_numbers(number0_val, number1_val);
 	});
-	});
+	});*/
 
 
-	function add_numbers(x, y){
+	function add_numbers(operand1, operand2){
 	    console.log('add numbers called');
-	    var result = Number(x) + Number(y);
+	    var result = Number(operand1) + Number(operand2);
 	    $(document).ready(function() {$("#result").val(result);
-	    });
+	});
 	}
-	
+
 	function sub_numbers(operand1, operand2){
 	    console.log('sub numbers called');
-	    var result = parseInt(operand1) - parseInt(operand2);
+	    var result = Number(operand1) - Number(operand2);
 	    $(document).ready(function() {$("#result").val(result);
 	});
 	}
@@ -84,11 +133,10 @@
 
 	function div_numbers(operand1, operand2){
 	    console.log('div numbers called');
-	    var result = parseInt(operand1) / parseInt(operand2);
+	    var result = Number(operand1) / Number(operand2);
 	    $(document).ready(function() {$("#result").val(result);
 	});
 	}
-	
 
 	</script>
 
@@ -108,7 +156,7 @@
 		<div class="col-xs-1 col-md-offset-3 text-center"><button type="button" onclick="input_digit(4)">4</div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(5)">5</button></div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(6)">6</button></div>
-		<div class="col-xs-1 text-center"><button id="div_button" type="button">&divide;</button></div>
+		<div class="col-xs-1 text-center"><button id="div_button" type="button" onclick="input_operator('/')">&divide;</button></div>
 	</div>
 	<div class="row">
 		<div class="col-xs-12"></div>
@@ -117,18 +165,19 @@
 		<div class="col-xs-1 col-md-offset-3 text-center"><button type="button" onclick="input_digit(3)">3</button></div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(2)">2</button></div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(1)">1</button></div>
-		<div class="col-xs-1 text-center"><button id="mul_button" type="button">x</button></div>
+		<div class="col-xs-1 text-center"><button id="mul_button" type="button" onclick="input_operator('*')">x</button></div>
 	</div>
 	<div class="row">
 		<div class="col-xs-1 col-md-offset-3 text-center"><button type="button">.</button></div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(0)">0</button></div>
-		<div class="col-xs-1 text-center"><button id="equal_button" type="button">=</button></div>
-		<div class="col-xs-1 text-center"><button id="sub_button" type="button">-</button></div>
-		<div class="col-xs-1 text-center"><button id="add_button" type="button">+</button></div>
+		<div class="col-xs-1 text-center"><button id="equal_button" type="button" onclick="calculate('=')">=</button></div>
+		<div class="col-xs-1 text-center"><button id="sub_button" type="button" onclick="input_operator('-')">-</button></div>
+		<div class="col-xs-1 text-center"><button id="add_button" type="button" onclick="input_operator('+')">+</button></div>
+		<!--<div class="col-xs-1 text-center"><button id="switch_button" type="button">Switch!</button></div>-->
 	</div>
 	<div class="row">
-		<div class="col-md-3 col-md-offset-2 text-center"><input id="number_0" placeholer="number 0" type="text"></div>
-		<div class="col-md-3 text-center text-center"><input id="number_1" placeholer="number 1" type="text"></div>
+		<!--<div class="col-md-3 col-md-offset-2 text-center"><input class="selected" id="number_0" placeholer="number 0" type="text"></div>
+		<div class="col-md-3 text-center text-center"><input id="number_1" placeholer="number 1" type="text"></div>-->
 	</div>
 </div>
 
