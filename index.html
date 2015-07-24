@@ -26,7 +26,7 @@
 	var operand_array = ["" , ""];
 	var active_operator;
 	var index_pointer = 0;
-	var new_value;	
+	var new_value;
 
 
 		/*********************Input Digit Function*******************************************
@@ -36,7 +36,7 @@
 		*places the input numbers into array[0] untill you add an operator.
 		*/
 		function input_digit(digit){
-			var new_value = $('#result').val();
+			new_value = $('#result').val();
 			var product = new_value + digit;
 			$('#result').val(product);
 			operand_array[index_pointer]+=digit;
@@ -49,12 +49,22 @@
 		*And puts it back into the #result field.
 		*and then changes the index_pointer to 1 so it takes the new set numbers.
 		*/
+		//DWP THIS ONE
+		//declaring the function of input_operator which takes operator as a parameter,
+		//input_operator is being called when one of the <button>'s with onclick="input_operator", is being clicked
 		function input_operator(operator){
+			//which ever operator is clicked, it gets stored into the global variable of active_operator
 			active_operator = operator;
+			//console.log out saying which operator has been clicked.
 			console.log('operator entered was ' , operator);
+			//setting the undefined global variable to take out and save what was already in the #result field. and stores in new_value.
 			new_value = $('#result').val();
+			//concatenating new_value and operator together, and storing into var new_op.
 			var new_op = new_value + operator;
+			//takes the var new_op and putting that into the #result field.
 			$('#result').val(new_op);
+			//changing the global variable of index_pointer=0, and changing it to 1,
+			// so the next digits you enter go into the index[1] of the array.
 			index_pointer = 1;
 		}
 
@@ -66,33 +76,47 @@
 		*Then puts the answer into the #result field.
 		*/
 		function calculate(){
+			//var  num1 is set to index position 0 in the array, which would be any numbers you hit before and operator
 			var num1 = operand_array[0];
+			//var num2 is set to index position 1 in the array, which would be any numbers you hit after the operator
 			var num2 = operand_array[1];
+			//console.log out when you hit '=' it does actually run the calculate function
 			console.log("calculate fucntion ran on click");
+			//console.log out what is inside the array when you hit '=', (the digits you click before and after the operator)
 			console.log("at calculate operand array is " , operand_array);
+			//console.log out which operator has been chosen
 			console.log('operator is ' , active_operator);
+			//starting the switch, to decide which case to choose based on the operator that has been chosen
 			switch(active_operator){
 				//Calls function add_numbers()
 				case '+':
+					//console.log that the '+' case has been called
 					console.log('case + called');
+					//calling the function add_numbers and passing num1 and num2 as parameters
 					add_numbers(num1, num2);
 					break;
 
-				case '-':
 				//Calss function sub_numbers()
+				case '-':
+					//console.log that the '-' case  has been called
 					console.log('case - called');
+					//calling the function sub_numbers and passing num1 and num2 as parameters
 					sub_numbers(num1, num2);
 					break;
 
-				case '*':
 				//Calls funtion mul_numbers()
+				case '*':
+					//console.log that the '*' case has been called
 					console.log('case * called');
+					//calling the fucntion mul_numbers and passing num1 and num2 as parameters
 					mul_numbers(num1, num2);
 					break;
 
-				case '/':
 				//Calls function div_numbers()
+				case '/':
+					//console.log that the '/' case has been called
 					console.log('case / called');
+					//calling the fucntion div_numbers and passing num1 and num2 as parameters
 					div_numbers(num1, num2);
 					break;
 			}
