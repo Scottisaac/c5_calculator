@@ -21,14 +21,20 @@
 	}
 	</style>
 	<script>
+
+	//Global Variables	
 	var operand_array = ["" , ""];
 	var active_operator;
 	var index_pointer = 0;
-	var new_value;
-		
+	var new_value;	
 
 
-
+		/*Input Digit Function
+		*Takes on click of <button> that has onclick=input_digit.
+		*takes value of #result, creates new variable to concatenate the value and the digit.
+		*then takes 'var product' and puts it into #result.
+		*places the input numbers into array[0]
+		*/
 		function input_digit(digit){
 			var new_value = $('#result').val();
 			var product = new_value + digit;
@@ -36,22 +42,35 @@
 			operand_array[index_pointer]+=digit;
 		}
 
+		/*Input Operator Function
+		*Takes on click of <button> that has onclick=input_operator
+		*Sets active_operator to the operator you click
+		*Takes value from #result and concatenate with the new operator.
+		*And puts it back into the #result field.
+		*and then changes the index_pointer to 1 so it takes the new number.
+		*/
 		function input_operator(operator){
 			active_operator = operator;
 			console.log('operator entered was ' , operator);
 			new_value = $('#result').val();
 			var new_op = new_value + operator;
-			console.log('new op is ' , new_op);
+			console.log('the operator is ' , new_op);
 			$('#result').val(new_op);
-			operand_array[index_pointer] += operator;
+			//operand_array[index_pointer] += operator;
 			index_pointer = 1;
-			
 		}
-	
+
+		/*Calculate Function
+		*Creates two variables to store what is in the array
+		*Using a switch to decide what type of operator has been pushed.
+		*Then based on the operator it takes the numbers in the array
+		*and does the math.
+		*Then puts that back into the #result field.
+		*/
 		function calculate(){
 			var num1 = operand_array[0];
 			var num2 = operand_array[1];
-			console.log('new value is ' , new_value);
+			//console.log('new value is ' , new_value);
 			console.log("calculate fucntion ran on click");
 			console.log("at calculate operand array is " , operand_array);
 			console.log('operator is ' , active_operator);
@@ -59,8 +78,9 @@
 				case '+':
 					$('#result').val();
 					console.log('case + called');
-					var result = add_numbers[num1, num2];
+					var result = add_numbers(num1, num2);
 					$('#result').val(result);
+					//console.log(add_numbers);
 					break;
 
 				case '-':
