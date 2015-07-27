@@ -16,9 +16,11 @@
 	button {
 		width:100%;
 	}
+
 	#result {
 		width: 100%;
 	}
+
 
 	button {
 		background-color:black;
@@ -33,6 +35,8 @@
 	var active_operator = "";
 	var index_pointer = 0;
 	var new_value;
+	//var input_array = ["","","","","","","","",""];
+	//var op_array = ["+","-","*","/"];
 
 
 
@@ -45,28 +49,26 @@
 
 		/*********************Input Digit Function*******************************************
 		*Takes on click of <button> that has onclick=input_digit.
-		*takes value of #result, creates new variable to concatenate the value and the digit.
-		*then takes 'var product' and puts it into #result.
+		*calls the function feed back to concatenate operand_array[0] , active_operator, and operand_array[1].
 		*places the input numbers into array[0] untill you add an operator.
 		*/
 		function input_digit(digit){
 			operand_array[index_pointer]+=digit;
-			//calls the function feed back to concatenate operand_array[0] , active_operator, and operand_array[1]
+			//input_array[index_pointer]+=digit;
 			feedback();
 		}
 
 		/****************Input Operator Function*********************************
-		*Takes on click of <button> that has onclick=input_operator
-		*Sets active_operator to the operator you click
-		*Takes value from #result and concatenate with the new operator.
-		*And puts it back into the #result field.
+		*Takes on click of <button> that has onclick=input_operator.
+		*Sets active_operator to the operator you click.
+		*calls the feedback function, which concatenates operand_array[0] , active_operator, and operand_array[1]
 		*and then changes the index_pointer to 1 so it takes the new set numbers.
 		*/
 		//DWP THIS ONE
 		//declaring the function of input_operator which takes operator as a parameter,
-		//input_operator is being called when one of the <button>'s with onclick="input_operator", is being clicked
+		//input_operator is being called when one of the <button>'s with onclick="input_operator", is being clicked.
 		function input_operator(operator){
-				//which ever operator is clicked, it gets stored into the global variable of active_operator
+				//which ever operator is clicked, it gets stored into the global variable of active_operator.
 			active_operator = operator;
 				//console.log out saying which operator has been clicked.
 			console.log('operator entered was ' , operator);
@@ -129,52 +131,52 @@
 		/******************Calculate Function*******************************
 		*Creates two variables to store what is in the array at [0] and [1].
 		*Using a switch to decide what type of operator has been pushed.
-		*Then based on the operator it takes the numbers in the array
+		*Then based on the operator it takes the numbers in the array.
 		*and calls the function for the correct operator then does the math.
 		*Then puts the answer into the #result field.
 		*/
 		function calculate(){
-			//var  num1 is set to index position 0 in the array, which would be any numbers you hit before and operator
+			//var  num1 is set to index position 0 in the array, which would be any numbers you hit before and operator.
 			var num1 = operand_array[0];
-			//var num2 is set to index position 1 in the array, which would be any numbers you hit after the operator
+			//var num2 is set to index position 1 in the array, which would be any numbers you hit after the operator.
 			var num2 = operand_array[1];
-			//console.log out when you hit '=' it does actually run the calculate function
+			//console.log out when you hit '=' it does actually run the calculate function.
 			console.log("calculate fucntion ran on click");
-			//console.log out what is inside the array when you hit '=', (the digits you click before and after the operator)
+			//console.log out what is inside the array when you hit '=', (the digits you click before and after the operator).
 			console.log("at calculate operand array is " , operand_array);
-			//console.log out which operator has been chosen
+			//console.log out which operator has been chosen.
 			console.log('operator is ' , active_operator);
-			//starting the switch, to decide which case to choose based on the operator that has been chosen
+			//starting the switch, to decide which case to choose based on the operator that has been chosen.
 			switch(active_operator){
 				//Calls function add_numbers()
 				case '+':
-					//console.log that the '+' case has been called
+					//console.log that the '+' case has been called.
 					console.log('case + called');
-					//calling the function add_numbers and passing num1 and num2 as parameters
+					//calling the function add_numbers and passing num1 and num2 as parameters.
 					add_numbers(num1, num2);
 					break;
 
 				//Calss function sub_numbers()
 				case '-':
-					//console.log that the '-' case  has been called
+					//console.log that the '-' case  has been called.
 					console.log('case - called');
-					//calling the function sub_numbers and passing num1 and num2 as parameters
+					//calling the function sub_numbers and passing num1 and num2 as parameters.
 					sub_numbers(num1, num2);
 					break;
 
 				//Calls funtion mul_numbers()
 				case '*':
-					//console.log that the '*' case has been called
+					//console.log that the '*' case has been called.
 					console.log('case * called');
-					//calling the fucntion mul_numbers and passing num1 and num2 as parameters
+					//calling the fucntion mul_numbers and passing num1 and num2 as parameters.
 					mul_numbers(num1, num2);
 					break;
 
 				//Calls function div_numbers()
 				case '/':
-					//console.log that the '/' case has been called
+					//console.log that the '/' case has been called.
 					console.log('case / called');
-					//calling the fucntion div_numbers and passing num1 and num2 as parameters
+					//calling the fucntion div_numbers and passing num1 and num2 as parameters.
 					div_numbers(num1, num2);
 					break;
 			}
@@ -184,16 +186,16 @@
 		
 
 	/*********Function add_numbers*******************************
-	*Function add_numbers gets called from the switch case '+'
-	*takes two parameters (the two numbers you are trying to add)
-	*var results is the sum of the two parameters
+	*Function add_numbers gets called from the switch case '+'.
+	*takes two parameters (the two numbers you are trying to add).
+	*var results is the sum of the two parameters.
 	*Then takes the result and places it into the #result field.
 	*/
 
 	function add_numbers(operand1, operand2){
-	    console.log('add numbers called');
+	    //console.log('add numbers called');
 	    var result = Number(operand1) + Number(operand2);
-	    operand_array[0] = result;
+	    operand_array[0] = result; 
 	    active_operator = "";
 	    operand_array[1] = "";
 	    console.log('result value ' , result);
@@ -203,48 +205,60 @@
 	}
 
 	/*********Function sub_numbers***********************************
-	*Function sub_numbers gets called from the switch case '-'
-	*takes two parameters (the two numbers you are trying to subtract)
-	*var results is the subtraction of the two parameters
+	*Function sub_numbers gets called from the switch case '-'.
+	*takes two parameters (the two numbers you are trying to subtract).
+	*var results is the subtraction of the two parameters.
 	*Then takes the result and places it into the #result field.
 	*/
 
 	function sub_numbers(operand1, operand2){
-	    console.log('sub numbers called');
+	    //console.log('sub numbers called');
 	    var result = Number(operand1) - Number(operand2);
+	    operand_array[0] = result; 
+	    active_operator = "";
+	    operand_array[1] = "";
 	    console.log('result value ' , result);
-	    $(document).ready(function() {$("#result").val(result);
-	});
+	    //$(document).ready(function() {$("#result").val(result);
+	    feedback();
+	//});
 	}
 
 	/*********Function mul_numbers************************************
-	*Function mul_numbers gets called from the switch case '*'
-	*takes two parameters (the two numbers you are trying to multiply)
-	*var results is the product of the two parameters
+	*Function mul_numbers gets called from the switch case '*'.
+	*takes two parameters (the two numbers you are trying to multiply).
+	*var results is the product of the two parameters.
 	*Then takes the result and places it into the #result field.
 	*/
 
 	function mul_numbers(operand1, operand2){
-	    console.log('multiply numbers called');
+	    //console.log('multiply numbers called');
 	    var result = Number(operand1) * Number(operand2);
+	    operand_array[0] = result; 
+	    active_operator = "";
+	    operand_array[1] = "";
 	    console.log('result value ' , result);
-	    $(document).ready(function() {$("#result").val(result);
-	});
+	    //$(document).ready(function() {$("#result").val(result);
+	    feedback();
+	//});
 	}
 
 	/*********Function div_numbers**********************************
-	*Function div_numbers gets called from the switch case '/'
-	*takes two parameters (the two numbers you are trying to divide)
-	*var results is the division of the two parameters
+	*Function div_numbers gets called from the switch case '/'.
+	*takes two parameters (the two numbers you are trying to divide).
+	*var results is the division of the two parameters.
 	*Then takes the result and places it into the #result field.
 	*/
 
 	function div_numbers(operand1, operand2){
-	    console.log('div numbers called');
+	    //console.log('div numbers called');
 	    var result = Number(operand1) / Number(operand2);
+	    operand_array[0] = result; 
+	    active_operator = "";
+	    operand_array[1] = "";
 	    console.log('result value ' , result);
-	    $(document).ready(function() {$("#result").val(result);
-	});
+	    //$(document).ready(function() {$("#result").val(result);
+	    feedback();
+	//});
 	}
 
 	</script>
@@ -256,19 +270,20 @@
 		<div class="col-md-4 col-md-offset-3"><input id="result" placeholder="Result" type="text"></div>
 	</div>
 	<div class="row">
+		<div class="col-xs-1 text-center col-md-offset-4"><button id="ac_button" type="button" onclick="all_clear()">AC</button></div>
+		<div class="col-xs-1 text-center"><button id="clear_button" type="button" onclick="clear_digit()">C</button></div>
+	</div>
+	<div class="row">
 		<div class="col-xs-1 col-md-offset-3 text-center"><button type="button" onclick="input_digit(7)">7</button></div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(8)">8</button></div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(9)">9</button></div>
-		<div class="col-xs-1 text-center"><button id="del_button" type="button">Del</button></div>
+		<div class="col-xs-1 text-center"><button id="add_button" type="button" onclick="input_operator('+')">+</button></div>
 	</div>
 	<div class="row">
 		<div class="col-xs-1 col-md-offset-3 text-center"><button type="button" onclick="input_digit(4)">4</div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(5)">5</button></div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(6)">6</button></div>
 		<div class="col-xs-1 text-center"><button id="div_button" type="button" onclick="input_operator('/')">&divide;</button></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12"></div>
 	</div>
 	<div class="row">
 		<div class="col-xs-1 col-md-offset-3 text-center"><button type="button" onclick="input_digit(3)">3</button></div>
@@ -281,11 +296,6 @@
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(0)">0</button></div>
 		<div class="col-xs-1 text-center"><button id="equal_button" type="button" onclick="calculate('=')">=</button></div>
 		<div class="col-xs-1 text-center"><button id="sub_button" type="button" onclick="input_operator('-')">-</button></div>
-		<div class="col-xs-1 text-center"><button id="add_button" type="button" onclick="input_operator('+')">+</button></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-1 text-center col-md-offset-3"><button id="ac_button" type="button" onclick="all_clear()">AC</button>
-		<div class="col-xs-1 text-center"><button id="clear_button" type="button" onclick="clear_digit()">C</button>
 	</div>
 </div>
 
