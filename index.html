@@ -19,14 +19,28 @@
 	#result {
 		width: 100%;
 	}
+
+	button {
+		background-color:black;
+		color:white;
+		border-radius: 5px;
+	}
 	</style>
 	<script>
 
 	//Global Variables
 	var operand_array = ["" , ""];
-	var active_operator;
+	var active_operator = "";
 	var index_pointer = 0;
 	var new_value;
+
+
+
+
+
+		function feedback(){
+			$('#result').val(operand_array[0] + active_operator + operand_array[1]);
+		}
 
 
 		/*********************Input Digit Function*******************************************
@@ -36,10 +50,9 @@
 		*places the input numbers into array[0] untill you add an operator.
 		*/
 		function input_digit(digit){
-			new_value = $('#result').val();
-			var product = new_value + digit;
-			$('#result').val(product);
 			operand_array[index_pointer]+=digit;
+			//calls the function feed back to concatenate operand_array[0] , active_operator, and operand_array[1]
+			feedback();
 		}
 
 		/****************Input Operator Function*********************************
@@ -53,20 +66,65 @@
 		//declaring the function of input_operator which takes operator as a parameter,
 		//input_operator is being called when one of the <button>'s with onclick="input_operator", is being clicked
 		function input_operator(operator){
-			//which ever operator is clicked, it gets stored into the global variable of active_operator
+				//which ever operator is clicked, it gets stored into the global variable of active_operator
 			active_operator = operator;
-			//console.log out saying which operator has been clicked.
+				//console.log out saying which operator has been clicked.
 			console.log('operator entered was ' , operator);
-			//setting the undefined global variable to take out and save what was already in the #result field. and stores in new_value.
-			new_value = $('#result').val();
-			//concatenating new_value and operator together, and storing into var new_op.
-			var new_op = new_value + operator;
-			//takes the var new_op and putting that into the #result field.
-			$('#result').val(new_op);
-			//changing the global variable of index_pointer=0, and changing it to 1,
-			// so the next digits you enter go into the index[1] of the array.
+				//calls the function feed back to concatenate operand_array[0] , active_operator, and operand_array[1] 
+			feedback();
+				//changing the global variable of index_pointer=0, and changing it to 1,
+				// so the next digits you enter go into the index[1] of the array.
 			index_pointer = 1;
 		}
+
+
+		/*************Input_decimal Function*****************************
+		*
+		*
+		*
+		*
+		*/
+		function input_decimal(decimal){
+			operand_array[index_pointer] += decimal;
+			feedback();
+		}
+
+
+		/**************All_clear Function**************************
+		*
+		*
+		*
+		*
+		*
+		*/
+		function all_clear(){
+			operand_array = ["" , ""];
+			active_operator = "";
+			index_pointer = 0;
+			feedback();
+			console.log("all clear has been clicked");
+			console.log("operand array when cleared " , operand_array);
+			console.log("active operator is " , active_operator);
+			console.log("index pointer is " , index_pointer);
+		}
+
+
+
+		function clear_digit(){
+			console.log("clear has been clicked");
+			if(index_pointer == 0){
+				$('#result').val("");
+				operand_array[0] = [""];
+				console.log("operand array [0] is " , operand_array[0]);
+			}
+			else if(index_pointer == 1){
+				$('#result').val(operand_array[0] + active_operator);
+				operand_array[1] = [""];
+				console.log("operand array [1] is " , operand_array[1]);
+			}
+		}
+		
+
 
 		/******************Calculate Function*******************************
 		*Creates two variables to store what is in the array at [0] and [1].
@@ -120,9 +178,9 @@
 					div_numbers(num1, num2);
 					break;
 			}
-			
 
 		}
+		
 		
 
 	/*********Function add_numbers*******************************
@@ -135,9 +193,13 @@
 	function add_numbers(operand1, operand2){
 	    console.log('add numbers called');
 	    var result = Number(operand1) + Number(operand2);
+	    operand_array[0] = result;
+	    active_operator = "";
+	    operand_array[1] = "";
 	    console.log('result value ' , result);
-	    $(document).ready(function() {$("#result").val(result);
-	});
+	    //$(document).ready(function() {$("#result").val(result);
+	    feedback();
+	//});
 	}
 
 	/*********Function sub_numbers***********************************
@@ -215,11 +277,15 @@
 		<div class="col-xs-1 text-center"><button id="mul_button" type="button" onclick="input_operator('*')">x</button></div>
 	</div>
 	<div class="row">
-		<div class="col-xs-1 col-md-offset-3 text-center"><button type="button">.</button></div>
+		<div class="col-xs-1 col-md-offset-3 text-center"><button id="deci_button" type="button" onclick="input_decimal('.')">.</button></div>
 		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(0)">0</button></div>
 		<div class="col-xs-1 text-center"><button id="equal_button" type="button" onclick="calculate('=')">=</button></div>
 		<div class="col-xs-1 text-center"><button id="sub_button" type="button" onclick="input_operator('-')">-</button></div>
 		<div class="col-xs-1 text-center"><button id="add_button" type="button" onclick="input_operator('+')">+</button></div>
+	</div>
+	<div class="row">
+		<div class="col-xs-1 text-center col-md-offset-3"><button id="ac_button" type="button" onclick="all_clear()">AC</button>
+		<div class="col-xs-1 text-center"><button id="clear_button" type="button" onclick="clear_digit()">C</button>
 	</div>
 </div>
 
