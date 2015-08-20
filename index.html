@@ -13,6 +13,9 @@
 	* {
 		#border:1px solid;
 	}
+
+
+
 	button {
 		width:100%;
 	}
@@ -265,39 +268,41 @@
 
 </head>
 <body>
-<div class="container">
-	<div class="row">
-		<div class="col-md-4 col-md-offset-3"><input id="result" placeholder="Result" type="text"></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-1 text-center col-md-offset-4"><button id="ac_button" type="button" onclick="all_clear()">AC</button></div>
-		<div class="col-xs-1 text-center"><button id="clear_button" type="button" onclick="clear_digit()">C</button></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-1 col-md-offset-3 text-center"><button type="button" onclick="input_digit(7)">7</button></div>
-		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(8)">8</button></div>
-		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(9)">9</button></div>
-		<div class="col-xs-1 text-center"><button id="add_button" type="button" onclick="input_operator('+')">+</button></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-1 col-md-offset-3 text-center"><button type="button" onclick="input_digit(4)">4</div>
-		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(5)">5</button></div>
-		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(6)">6</button></div>
-		<div class="col-xs-1 text-center"><button id="div_button" type="button" onclick="input_operator('/')">&divide;</button></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-1 col-md-offset-3 text-center"><button type="button" onclick="input_digit(3)">3</button></div>
-		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(2)">2</button></div>
-		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(1)">1</button></div>
-		<div class="col-xs-1 text-center"><button id="mul_button" type="button" onclick="input_operator('*')">x</button></div>
-	</div>
-	<div class="row">
-		<div class="col-xs-1 col-md-offset-3 text-center"><button id="deci_button" type="button" onclick="input_decimal('.')">.</button></div>
-		<div class="col-xs-1 text-center"><button type="button" onclick="input_digit(0)">0</button></div>
-		<div class="col-xs-1 text-center"><button id="equal_button" type="button" onclick="calculate('=')">=</button></div>
-		<div class="col-xs-1 text-center"><button id="sub_button" type="button" onclick="input_operator('-')">-</button></div>
-	</div>
-</div>
+<!--<div class="container">-->
+    <div class="calc-container col-md-7">
+        <div class="row">
+            <div class="col-md-4"><input id="result" placeholder="Result" type="text"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1 text-center col-xs-offset-1"><button id="ac_button" type="button" onclick="all_clear()">AC</button></div>
+            <div class="col-xs-1 text-center"><button id="clear_button" type="button" onclick="clear_digit()">C</button></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1 text-center"><button type="button" onclick="input_digit(7)">7</button></div>
+            <div class="col-xs-1 text-center"><button type="button" onclick="input_digit(8)">8</button></div>
+            <div class="col-xs-1 text-center"><button type="button" onclick="input_digit(9)">9</button></div>
+            <div class="col-xs-1 text-center"><button id="add_button" type="button" onclick="input_operator('+')">+</button></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1 text-center"><button type="button" onclick="input_digit(4)">4</div>
+            <div class="col-xs-1 text-center"><button type="button" onclick="input_digit(5)">5</button></div>
+            <div class="col-xs-1 text-center"><button type="button" onclick="input_digit(6)">6</button></div>
+            <div class="col-xs-1 text-center"><button id="div_button" type="button" onclick="input_operator('/')">&divide;</button></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1 text-center"><button type="button" onclick="input_digit(3)">3</button></div>
+            <div class="col-xs-1 text-center"><button type="button" onclick="input_digit(2)">2</button></div>
+            <div class="col-xs-1 text-center"><button type="button" onclick="input_digit(1)">1</button></div>
+            <div class="col-xs-1 text-center"><button id="mul_button" type="button" onclick="input_operator('*')">x</button></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1 text-center"><button id="deci_button" type="button" onclick="input_decimal('.')">.</button></div>
+            <div class="col-xs-1 text-center"><button type="button" onclick="input_digit(0)">0</button></div>
+            <div class="col-xs-1 text-center"><button id="equal_button" type="button" onclick="calculate('=')">=</button></div>
+            <div class="col-xs-1 text-center"><button id="sub_button" type="button" onclick="input_operator('-')">-</button></div>
+        </div>
+    </div>
+<!--</div>-->
 
 
 </body>
